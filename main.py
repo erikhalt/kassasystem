@@ -22,9 +22,10 @@ class system:
             if sel == 1:
                 newPurchase(self.goods_file)
             if sel == 2:
-                sys.exit()
+                return
 
 
 if __name__ is '__main__':
     System = system()
     System.run()
+    sys.exit()
