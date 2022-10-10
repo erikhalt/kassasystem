@@ -1,6 +1,6 @@
 class newPurchase:
-    def __init__(self, goodsId,goodsAmount):
-       
+    def __init__(self):
+        
         self.run()
 
     def run(self):

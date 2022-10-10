@@ -1,0 +1,2 @@
+300:bananer:15:kr/kg
+305:äpple:12:kr/kg

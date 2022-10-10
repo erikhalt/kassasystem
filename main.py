@@ -4,10 +4,7 @@ from receipt import *
 
 class system:
     def __init__(self):
-        self.goods_file = {'300':[10,'bananer'], '301':[8,'Äpple']}
-
-        
-
+        self.run()
     def run(self):
         while True:
             print('**Kassa**')
@@ -30,5 +27,4 @@ class system:
 
 if __name__ is '__main__':
     System = system()
-    System.run()
     System.exit()
