@@ -1,6 +1,9 @@
+from receipt import * 
+
 class newPurchase:
     def __init__(self,productlist):
         self.__productlist = productlist
+        self.receipt = receipt(self.__productlist)
         self.run()
 
     def run(self):
@@ -10,11 +13,11 @@ class newPurchase:
             print('PAY')
             command_selection = input('command: ')
             if command_selection.lower() == 'pay':
-                return
+                print(self.receipt.printfull())
             else:
                 productid, amount = command_selection.split(' ')
-                print(productid)
-                print(amount)
+                self.receipt.addrows(productid,amount)
+                self.receipt.printexcisting()
 
 
 
