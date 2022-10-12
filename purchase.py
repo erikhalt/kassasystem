@@ -16,7 +16,7 @@ class newPurchase:
                 print(self.receipt.printfull())
             else:
                 productid, amount = command_selection.split(' ')
-                self.receipt.addrows(productid,amount)
+                self.receipt.addrows(str(productid),int(amount))
                 self.receipt.printexcisting()
 
 

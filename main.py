@@ -10,26 +10,23 @@ class system:
         with open('goodsfile.txt') as file:
             for line in file:
                 parts = line.split(':')
-                self.productlist.append(Product(parts[0],parts[1],int(parts[2]),parts[3].replace('\n', '')))
+                self.__productlist.append(Product(parts[0],parts[1],int(parts[2]),parts[3].replace('\n', '')))
         while True:
             print('**Kassa**')
             print('1. Nytt köp')
             print('2.Avsluta')
             
-            try:
-                sel = int(input(' : '))
-            except:
-                print('Något gick fel vänligen gör val 1/2...')
+            sel = int(input(' : '))
 
             if sel == 1:
-                newPurchase(self.productlist)
-            if sel == 2:
+                newPurchase(self.__productlist)
+            elif sel == 2:
                 return
     
     def exit():
         sys.exit()
 
 
-if __name__ is '__main__':
+if __name__ == '__main__':
     System = system()
     System.exit()
