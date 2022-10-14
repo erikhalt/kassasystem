@@ -25,5 +25,10 @@ class AdminPage:
 
     def searchReceipt(self):
         print('Vilken dag söker du?')
-        print('Input = yyyy-mm-dd')
+        print('Input = yyyymmdd')
         receiptChoice = input(' : ')
+        try:
+            for index in range(len(receiptChoice)):
+                int(receiptChoice[index])
+        except:
+            print('Felaktig inmatning...')
