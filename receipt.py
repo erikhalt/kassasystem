@@ -26,14 +26,21 @@ class receipt:
     
     def printexcisting(self):
         
-        print(f'{datetime.now().strftime("%Y-%m-%d %H:%M:%S")} Kvittonummer: {self.__nextreceiptnumber}')
+        print(f'Kvitto: {self.__nextreceiptnumber}\t{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}')
+        totalprice = 0        
         for rows in self.__receiptrows:
-            print(f'{rows[1]}%t{rows[2]}*{rows[3]}%t= {rows[2]*rows[3]}')
+            totalprice += (rows[2]*rows[3])
+            print(f'{rows[1]} antal {rows[2]} á {rows[3]}\t\t= {rows[2]*rows[3]}')
 
+        print(f'Total: {totalprice}')
     def printfull(self):
         print(f'{datetime.now().strftime("%Y-%m-%d %H:%M:%S")} Kvittonummer: {self.__nextreceiptnumber}')
+        totalprice = 0
         for rows in self.__receiptrows:
-            print(f'{rows[1]}%t{rows[2]}*{rows[3]}%t= {rows[2]*rows[3]}')
+            totalprice += (rows[2]*rows[3])
+            print(f'{rows[1]}\t{rows[2]}\t*\t{rows[3]}\t= \t{rows[2]*rows[3]}')
+
+        print(f'Total: {totalprice}')
         with open('nextreceiptnumber.txt', 'w') as file:
             file.write(str(self.__nextreceiptnumber+1))
 

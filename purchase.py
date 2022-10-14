@@ -17,6 +17,11 @@ class newPurchase:
                 return
             else:
                 productid, amount = command_selection.split(' ')
-                self.receipt.addrows(str(productid),int(amount))
+                productid = str(productid)
+                amount = int(amount)
+                for object in self.__productlist:
+                    if object.getID() == productid:
+                        priceType = object.getType()
+                self.receipt.addrows(productid,amount)
                 self.receipt.printexcisting()
 
