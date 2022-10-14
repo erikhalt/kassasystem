@@ -11,5 +11,3 @@ class Product:
         return self.__price
     def getID(self):
         return self.__id
-    def getType(self):
-        return self.__priceType

@@ -2,6 +2,8 @@ import sys
 from purchase import *
 from receipt import *
 from produkt import *
+
+
 class system:
     def __init__(self):
         self.__productlist = []
@@ -25,6 +27,8 @@ class system:
                 newPurchase(self.__productlist)
             elif sel == 2:
                 self.exit()
+            elif sel == 3:
+                
     
     def exit(self):
         sys.exit()

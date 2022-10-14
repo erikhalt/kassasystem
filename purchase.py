@@ -14,6 +14,7 @@ class newPurchase:
             command_selection = input('command: ')
             if command_selection.lower() == 'pay':
                 print(self.receipt.printfull())
+                
                 return
             else:
                 productid, amount = command_selection.split(' ')

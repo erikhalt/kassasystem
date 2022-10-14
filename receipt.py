@@ -6,7 +6,9 @@ class receipt:
         self.__receiptrows = []
         self.__receiptrowids = []
         self.__nextreceiptnumber = 0
-
+        self.__totalsum = 0
+        self.__receiptdate = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        
         with open('nextreceiptnumber.txt') as file:
             rNumber = file.read()
         
@@ -26,21 +28,19 @@ class receipt:
     
     def printexcisting(self):
         
-        print(f'Kvitto: {self.__nextreceiptnumber}\t{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}')
-        totalprice = 0        
+        print(f'Kvitto: {self.__nextreceiptnumber}\t{self.__receiptdate}')        
         for rows in self.__receiptrows:
-            totalprice += (rows[2]*rows[3])
+            self.__totalsum += (rows[2]*rows[3])
             print(f'{rows[1]} antal {rows[2]} á {rows[3]}\t\t= {rows[2]*rows[3]}')
 
-        print(f'Total: {totalprice}')
+        print(f'Total: {self.__totalsum}')
     def printfull(self):
-        print(f'{datetime.now().strftime("%Y-%m-%d %H:%M:%S")} Kvittonummer: {self.__nextreceiptnumber}')
-        totalprice = 0
+        print(f'{self.__receiptdate} Kvittonummer: {self.__nextreceiptnumber}')
         for rows in self.__receiptrows:
-            totalprice += (rows[2]*rows[3])
+            self.__totalsum += (rows[2]*rows[3])
             print(f'{rows[1]}\t{rows[2]}\t*\t{rows[3]}\t= \t{rows[2]*rows[3]}')
 
-        print(f'Total: {totalprice}')
+        print(f'Total: {self.__totalsum}')
         with open('nextreceiptnumber.txt', 'w') as file:
             file.write(str(self.__nextreceiptnumber+1))
 
