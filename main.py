@@ -5,7 +5,7 @@ from produkt import *
 class system:
     def __init__(self):
         self.__productlist = []
-        self.run()
+        
     def run(self):
         with open('goodsfile.txt') as file:
             for line in file:
@@ -16,17 +16,20 @@ class system:
             print('1. Nytt köp')
             print('2.Avsluta')
             
-            sel = int(input(' : '))
+            try: 
+                sel = int(input(' : '))
+            except:
+                print('något gick fel....')
 
             if sel == 1:
                 newPurchase(self.__productlist)
             elif sel == 2:
-                return
+                self.exit()
     
-    def exit():
+    def exit(self):
         sys.exit()
 
 
 if __name__ == '__main__':
     System = system()
-    System.exit()
+    System.run()
