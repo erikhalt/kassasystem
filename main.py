@@ -1,4 +1,5 @@
 import sys
+from admin import AdminPage
 from purchase import *
 from receipt import *
 from produkt import *
@@ -16,7 +17,8 @@ class system:
         while True:
             print('**Kassa**')
             print('1. Nytt köp')
-            print('2.Avsluta')
+            print('2. Adminmenu')
+            print('3. Avsluta')
             
             try: 
                 sel = int(input(' : '))
@@ -26,9 +28,9 @@ class system:
             if sel == 1:
                 newPurchase(self.__productlist)
             elif sel == 2:
-                self.exit()
+                AdminPage()
             elif sel == 3:
-                
+                self.exit()
     
     def exit(self):
         sys.exit()
