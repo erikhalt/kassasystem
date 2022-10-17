@@ -13,6 +13,7 @@ class newPurchase:
             print('PAY')
             command_selection = input('command: ')
             if command_selection.lower() == 'pay':
+                self.receipt.savetofile()
                 print(self.receipt.printfull())
                 
                 return

@@ -1,4 +1,5 @@
 from datetime import datetime
+import os
 
 class receipt:
     def __init__(self,productlist):
@@ -8,7 +9,8 @@ class receipt:
         self.__nextreceiptnumber = 0
         self.__totalsum = 0
         self.__receiptdate = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        
+        self.__dateofpurchase = datetime.now().strftime("%Y-%m-%d")
+        # self.__pathtofile = str)
         with open('nextreceiptnumber.txt') as file:
             rNumber = file.read()
         
@@ -43,4 +45,8 @@ class receipt:
         print(f'Total: {self.__totalsum}')
         with open('nextreceiptnumber.txt', 'w') as file:
             file.write(str(self.__nextreceiptnumber+1))
+    
+    def savetofile(self):
+        with open(f'receipts\\RECEIPT_{self.__dateofpurchase}', 'w') as file:
+            file.write(f'{self.__nextreceiptnumber}:{self.__receiptdate}:{self.__totalsum}:{self.__receiptrows}')
 
