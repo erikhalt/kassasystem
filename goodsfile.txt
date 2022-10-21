@@ -1,2 +1,2 @@
-300:Bannana:14.95:kr/kg
-305:Apple:32.95:kr/kg
+300:Banan:14.95:kr/kg
+305:Apple:31.9:kr/kg

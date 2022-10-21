@@ -13,3 +13,7 @@ class Product:
         return self.__id
     def getType(self):
         return self.__priceType
+    def setName(self,name):
+        self.__name = name
+    def setPrice(self,price):
+        self.__price = price

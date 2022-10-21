@@ -1,9 +1,12 @@
 from genericpath import isfile
 import os
+from produkt import *
 
 class AdminPage:
     def __init__(self,productlist):
         self.__productlist = productlist
+        self.run()
+    def run(self):
         while True:
             print('*AdminVerktyg*')
             print('1. Ändra namn/pris på produkt')
@@ -17,13 +20,33 @@ class AdminPage:
                 print('Något gick fel.....')
             
             if selection == 1:
-                pass
+                self.changeProduct()
+                with open('goodsfile.txt', 'w') as file:
+                    for product in self.__productlist:
+                        file.write(f'{product.getID()}:{product.getName()}:{product.getPrice()}:{product.getType()}\n')
             elif selection == 2:
                 self.searchReceipt()
             elif selection == 3:
                 pass
             elif selection == 4:
                 return
+    def changeProduct(self):
+        print('Vilket ID vill du ändra på?')
+        choice = input(' : ')
+        for product in self.__productlist:
+            if choice == product.getID():
+                print(f'{product.getName()} {product.getPrice()}')
+                print('Commands:')
+                print('<namn/pris> <nytt värde>')
+                print('BACKA')
+                change = input(' : ')
+                if change == 'BACKA':
+                    break
+                theType, theValue = change.split(' ')
+                if theType == 'namn':
+                    product.setName(theValue)
+                if theType == 'pris':
+                    product.setPrice(theValue)
 
     def searchReceipt(self):
         print('Vilken dag söker du?')

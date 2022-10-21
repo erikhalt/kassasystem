@@ -8,7 +8,6 @@ from produkt import *
 class system:
     def __init__(self):
         self.__productlist = []
-        
     def run(self):
         with open('goodsfile.txt') as file:
             for line in file:
@@ -28,7 +27,7 @@ class system:
             if sel == 1:
                 newPurchase(self.__productlist)
             elif sel == 2:
-                AdminPage()
+                AdminPage(self.__productlist)
             elif sel == 3:
                 self.exit()
     
