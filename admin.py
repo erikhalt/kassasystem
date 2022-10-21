@@ -1,7 +1,9 @@
-
+from genericpath import isfile
+import os
 
 class AdminPage:
-    def __init__(self):
+    def __init__(self,productlist):
+        self.__productlist = productlist
         while True:
             print('*AdminVerktyg*')
             print('1. Ändra namn/pris på produkt')
@@ -25,10 +27,38 @@ class AdminPage:
 
     def searchReceipt(self):
         print('Vilken dag söker du?')
-        print('Input = yyyymmdd')
+        print('Input = yyyy-mm-dd')
         receiptChoice = input(' : ')
-        try:
-            for index in range(len(receiptChoice)):
-                int(receiptChoice[index])
-        except:
-            print('Felaktig inmatning...')
+        receiptPath = f'Receipts\\RECEIPT_{receiptChoice}.txt'
+        if os.path.isfile(receiptPath):
+            with open(receiptPath, 'r') as file:
+                for lines in file:
+                    parts = lines.split(':')
+                    if parts[0] == 'Kvitto':
+                        print(f'Kvitto:{parts[1][0]}')
+                    if parts[0] == 'Total':
+                        print(f'Total:{parts[1]}')
+        
+        print('Vilket kvittonummer vill du se?')
+        print('Ange *BACKA* för att backa')
+        printing = False
+        choice = input(' : ')
+        if choice == 'BACKA':
+            pass
+        elif os.path.isfile(receiptPath):
+            with open(receiptPath, 'r') as file:
+                for lines in file:
+                    parts = lines.split(':')
+                    if parts[0] == 'Kvitto':
+                        if parts[1][0] == choice:
+                            printing = True
+                    if parts[0] == 'Total' and printing == True:
+                        print(lines)
+                        printing = False
+                    if printing:
+                        print(lines)
+
+                        
+                    
+
+                        

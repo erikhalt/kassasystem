@@ -20,7 +20,7 @@ class newPurchase:
             else:
                 productid, amount = command_selection.split(' ')
                 productid = str(productid)
-                amount = int(amount)
+                amount = float(amount)
                 for object in self.__productlist:
                     if object.getID() == productid:
                         priceType = object.getType()

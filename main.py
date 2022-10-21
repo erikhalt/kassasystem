@@ -13,7 +13,7 @@ class system:
         with open('goodsfile.txt') as file:
             for line in file:
                 parts = line.split(':')
-                self.__productlist.append(Product(parts[0],parts[1],int(parts[2]),parts[3].replace('\n', '')))
+                self.__productlist.append(Product(parts[0],parts[1],float(parts[2]),parts[3].replace('\n', '')))
         while True:
             print('**Kassa**')
             print('1. Nytt köp')
