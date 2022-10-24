@@ -112,7 +112,8 @@ class AdminPage:
         except:
             print('Något gick fel...')
         with open('Campaign.txt','w') as file:
-            file.writelines(campaignList)
+            for campaigns in campaignList:
+                file.write(f'{campaigns}\n')
 
 
 
@@ -149,4 +150,5 @@ class AdminPage:
             changedCampaign = f'{parts[0]}:{newPrice}:{newStart}:{newEnd}'
             campaignList.append(changedCampaign)
         with open('Campaign.txt','w') as file:
-            file.writelines(campaignList)
+            for campaigns in campaignList:
+                file.write(f'{campaigns}\n')
