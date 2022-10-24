@@ -34,15 +34,16 @@ class receipt:
                         partsCampaign = campaigns.split(':')
                         productCampaignStart = int(partsCampaign[2].replace('-',''))
                         productCampaignEnd = int(partsCampaign[3].replace('-',''))
-                        dateOfPurchase = self.__dateofpurchase.replace('-','')
-                    if productCampaignStart <= dateOfPurchase <= productCampaignEnd:
-                        if productid == products.getID():
-                            newrow = [productid,products.getName(),partsCampaign[1],productamount]
-                            self.__receiptrows.append(newrow)
-                    else:
-                        if productid == products.getID():
-                            newrow = [productid,products.getName(),products.getPrice(),productamount]
-                            self.__receiptrows.append(newrow)
+                        dateOfPurchase = int(self.__dateofpurchase.replace('-',''))
+                        if products.getID() == partsCampaign[0]:
+                            if productCampaignStart <= dateOfPurchase <= productCampaignEnd:
+                                if productid == products.getID():
+                                    newrow = [productid,products.getName(),partsCampaign[1],productamount]
+                                    self.__receiptrows.append(newrow)
+                            else:
+                                if productid == products.getID():
+                                    newrow = [productid,products.getName(),products.getPrice(),productamount]
+                                    self.__receiptrows.append(newrow)
 
                 else:
                         if productid == products.getID():
