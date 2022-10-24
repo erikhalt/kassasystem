@@ -1,0 +1,7 @@
+Kvitto:6	2022-10-24 09:14:52
+LunchMenu 1 antal 1.0 á 65.0		= 65.0
+Bannana antal 0.5 á 14.95		= 7.475
+Total:209.95
+Kvitto:7	2022-10-24 09:15:59
+LunchMenu 1 antal 1.0 á 87.9		= 87.9
+Total:175.8

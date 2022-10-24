@@ -1,2 +1,3 @@
-300:Banan:14.95:kr/kg
+300:Bannana:14.95:kr/kg
 305:Apple:31.9:kr/kg
+302:LunchMenu 1:87.90:kr/st
