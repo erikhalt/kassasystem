@@ -91,7 +91,7 @@ class AdminPage:
         campaignList = []
         with open('Campaign.txt', 'r') as file:
             for line in file:
-                campaignList.append(line)
+                campaignList.append(line.replace('\n',''))
         choiceID = input('Vilket ID vill du lägga till/ändra kampanj på?')
         try:
             for products in self.__productlist:
@@ -112,8 +112,7 @@ class AdminPage:
         except:
             print('Något gick fel...')
         with open('Campaign.txt','w') as file:
-            for campaigns in campaignList:
-                file.write(f'{campaigns}\n')
+            file.writelines(campaignList)
 
 
 
@@ -121,7 +120,7 @@ class AdminPage:
         campaignList = []
         with open('Campaign.txt', 'r') as file:
             for line in file:
-                campaignList.append(line)
+                campaignList.append(line.replace('\n',''))
         for campaign_index, campaigns in enumerate(campaignList):
             print(f'{campaign_index}. {campaigns}')
         print('Vilken kampanj vill du ändra på?(0,1,2 etc)')
@@ -150,5 +149,4 @@ class AdminPage:
             changedCampaign = f'{parts[0]}:{newPrice}:{newStart}:{newEnd}'
             campaignList.append(changedCampaign)
         with open('Campaign.txt','w') as file:
-            for changes in campaignList:
-                file.write(f'{changes}\n')
+            file.writelines(campaignList)
