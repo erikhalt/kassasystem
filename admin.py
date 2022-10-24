@@ -94,26 +94,27 @@ class AdminPage:
 
 
     def NewcampaignPrice(self):
-        while True:
-            choiceID = input('Vilket ID vill du lägga till/ändra kampanj på?')
-            try:
-                for products in self.__productlist:
-                    if products.getID() == choiceID:
-                        newCampaign = float(input('Vilket Pris vill du att varan ska ha under kampanjen? : '))
-                        campaignStart = input('Vilket datum ska det börja (yyyy-mm-dd)')
-                        campaignEnd = input('Vilket datum ska det sluta (yyyy-mm-dd)')
-                        print('Vill du spara kampanjen? (Ja/Nej)')
-                        choiceSave = input(' : ')
-                        if choiceSave.lower() == 'ja':
-                            with open('Campaign.txt', 'a') as file:
-                                file.write(f'{choiceID}:{newCampaign}:{campaignStart}:{campaignEnd}\n')
-            except:
-                print('Något gick fel...')
+        campaignList = []
+        with open('Campaign.txt', 'r') as file:
+            for line in file:
+                campaignList.append(line)
+        choiceID = input('Vilket ID vill du lägga till/ändra kampanj på?')
+        try:
+            for products in self.__productlist:
+                if products.getID() == choiceID:
+                    newCampaign = float(input('Vilket Pris vill du att varan ska ha under kampanjen? : '))
+                    campaignStart = input('Vilket datum ska det börja (yyyy-mm-dd)')
+                    campaignEnd = input('Vilket datum ska det sluta (yyyy-mm-dd)')
+                    print('Vill du spara kampanjen? (Ja/Nej)')
+                    choiceSave = input(' : ')
+                    if choiceSave.lower() == 'ja':
+                            campaignList.append(f'{choiceID}:{newCampaign}:{campaignStart}:{campaignEnd}\n')
+        except:
+            print('Något gick fel...')
+        with open('Campaign.txt','w') as file:
+            for campaigns in campaignList:
+                file.write(f'{campaigns}\n')
 
-            print('Ange *BACKA* för att gå tillbaka')
-            choice = input(' : ')
-            if choice.upper() == 'BACKA':
-                break
 
 
     def changeCampaign(self):
