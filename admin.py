@@ -27,7 +27,7 @@ class AdminPage:
             elif selection == 2:
                 self.searchReceipt()
             elif selection == 3:
-                pass
+                self.campaignPrice()
             elif selection == 4:
                 return
     def changeProduct(self):
@@ -81,6 +81,27 @@ class AdminPage:
                     if printing:
                         print(lines)
 
+    def campaignPrice(self):
+        while True:
+            choiceID = input('Vilket ID vill du lägga till/ändra kampanj på?')
+            try:
+                for products in self.__productlist:
+                    if products.getName() == choiceID:
+                        print(f'{products.getName()} {products.getCampaign()} {products.getCampaignStart()} {products.getCampaignEnd()}')
+                        newCampaign = float(input('Vilket Pris vill du att varan ska ha under kampanjen? : '))
+                        campaignStart = input('Vilket datum ska det börja (yyyy-mm-dd)')
+                        campaignEnd = input('Vilket datum ska det sluta (yyyy-mm-dd)')
+                        products.setCampaign(newCampaign) 
+                        products.setCampaignStart(campaignStart)
+                        products.setCampaignEnd(campaignEnd)
+                    print('Såhär ser din kampanj ut.')
+                    print(f'{products.getName()} {products.getCampaign()} {products.getCampaignStart()} {products.getCampaignEnd()}')
+                    print('Ange *BACKA* för att gå tillbaka')
+                    choice = input(' : ')
+                    if choice.upper() == 'BACKA':
+                        break
+            except:
+                print('Något gick fel...')
                         
                     
 

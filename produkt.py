@@ -4,6 +4,9 @@ class Product:
         self.__id = id
         self.__price = price
         self.__priceType = type
+        self.__campaign = 0
+        self.__campaignStart = ''
+        self.__campaignEnd = ''
 
     def getName(self):
         return self.__name
@@ -17,3 +20,19 @@ class Product:
         self.__name = name
     def setPrice(self,price):
         self.__price = price
+
+    def getCampaign(self):
+        return self.__campaign
+    def setCampaign(self,campaign):
+        self.__campaign = campaign
+
+    def getCampaignStart(self):
+        return self.__campaignStart
+    def setCampaignStart(self,date):
+        self.__campaignStart = date
+
+    
+    def getCampaignEnd(self):
+        return self.__campaignEnd
+    def setCampaignEnd(self,date):
+        self.__campaignEnd = date

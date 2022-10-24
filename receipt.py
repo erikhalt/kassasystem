@@ -1,6 +1,7 @@
 from datetime import datetime
 import os
 
+
 class receipt:
     def __init__(self,productlist):
         self.__productlist = productlist
@@ -17,15 +18,28 @@ class receipt:
         self.__nextreceiptnumber = int(rNumber)
 
     def addrows(self,productid,productamount):
+
         if productid in self.__receiptrowids:
             for rows in self.__receiptrows:
                 if productid in rows:
                     rows[3] += productamount
         else:                    
             for products in self.__productlist:
-                if productid == products.getID():
-                    newrow = [productid,products.getName(),products.getPrice(),productamount]
-                    self.__receiptrows.append(newrow)
+                if products.getCampaignstart != '':
+                    productCampaignStart = products.getCampaignStart()
+                    productCampaignStart = int(productCampaignStart.replace('-',''))
+                    productCampaignEnd = products.getCampaignEnd()
+                    productCampaignEnd = int(productCampaignEnd.replace('-',''))
+                    dateOfPurchase = int(self.__dateofpurchase.replace('-',''))
+
+                if productCampaignStart <= dateOfPurchase <= productCampaignEnd:
+                    if productid == products.getID():
+                        newrow = [productid,products.getName(),products.getCampaign(),productamount]
+                        self.__receiptrows.append(newrow)
+                else:
+                    if productid == products.getID():
+                        newrow = [productid,products.getName(),products.getPrice(),productamount]
+                        self.__receiptrows.append(newrow)
         self.__receiptrowids.append(productid)
     
     def printexcisting(self):
