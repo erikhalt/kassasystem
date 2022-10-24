@@ -12,12 +12,7 @@ class AdminPage:
             print('2. Sök kvitton')
             print('3. Kampanjer')
             print('4. Backa')
-            
-            try: 
-                selection = int(input(' : '))
-            except:
-                print('Vänligen ange en siffra mellan 1-4')
-            
+            selection = menuChoice(4)
             if selection == 1:
                 self.changeProduct()
                 with open('goodsfile.txt', 'w') as file:
@@ -28,14 +23,11 @@ class AdminPage:
             elif selection == 3:
                 print('1. Ändra kampanj')
                 print('2. Lägg till ny kampanj')
-                try:
-                    choice = int(input(' : '))
-                    if choice == 2:
-                        self.NewcampaignPrice()
-                    if choice == 1:
-                        self.changeCampaign()
-                except:
-                    print('Vänligen välj mellan 1 eller 2.')
+                choice = menuChoice(2)
+                if choice == 2:
+                    self.NewcampaignPrice()
+                if choice == 1:
+                    self.changeCampaign()
             elif selection == 4:
                 return
 
@@ -51,7 +43,7 @@ class AdminPage:
                 print('BACKA')
                 change = input(' : ')
                 if change == 'BACKA':
-                    break
+                    return
                 theType, theValue = change.split(' ')
                 if theType == 'namn':
                     product.setName(theValue)

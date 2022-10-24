@@ -1,5 +1,6 @@
 import sys
 from admin import AdminPage
+from globalFunctions import menuChoice
 from purchase import *
 from receipt import *
 from produkt import *
@@ -19,16 +20,13 @@ class system:
             print('2. Adminmenu')
             print('3. Avsluta')
             
-            try: 
-                sel = int(input(' : '))
-            except:
-                print('något gick fel....')
+            selection = menuChoice(3)
 
-            if sel == 1:
+            if selection == 1:
                 newPurchase(self.__productlist)
-            elif sel == 2:
+            elif selection == 2:
                 AdminPage(self.__productlist)
-            elif sel == 3:
+            elif selection == 3:
                 self.exit()
     
     def exit(self):

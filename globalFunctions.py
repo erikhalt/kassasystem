@@ -26,3 +26,13 @@ def checkvalidDate(date:str) -> bool:
             return False
     else: 
         return False
+
+def menuChoice(amountChoices:int)->int:
+    while True:
+        try:
+            choice = int(input(' : '))
+            if 0<choice<=amountChoices:
+                return choice
+        except:
+            print(f'Vänligen ange en siffre mellan 1-{amountChoices}')
+
