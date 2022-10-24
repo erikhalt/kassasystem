@@ -1,6 +1,6 @@
 import os
 from produkt import *
-
+from globalFunctions import *
 class AdminPage:
     def __init__(self,productlist):
         self.__productlist = productlist
@@ -63,6 +63,8 @@ class AdminPage:
         print('Vilken dag söker du?')
         print('Input = yyyy-mm-dd')
         receiptChoice = input(' : ')
+        if not checkvalidDate(receiptChoice):
+            return
         receiptPath = f'Receipts\\RECEIPT_{receiptChoice}.txt'
         if os.path.isfile(receiptPath):
             with open(receiptPath, 'r') as file:
@@ -104,7 +106,13 @@ class AdminPage:
                 if products.getID() == choiceID:
                     newCampaign = float(input('Vilket Pris vill du att varan ska ha under kampanjen? : '))
                     campaignStart = input('Vilket datum ska det börja (yyyy-mm-dd)')
+                    if not checkvalidDate(campaignStart):
+                        print('Felaktig inmatning av Startdatum')
+                        return
                     campaignEnd = input('Vilket datum ska det sluta (yyyy-mm-dd)')
+                    if not checkvalidDate(campaignEnd):
+                        print('Felaktig inmatning av Slutdatum')
+                        return
                     print('Vill du spara kampanjen? (Ja/Nej)')
                     choiceSave = input(' : ')
                     if choiceSave.lower() == 'ja':
@@ -138,7 +146,13 @@ class AdminPage:
         if choiceChange.lower() == 'ändra':
             newPrice = input('Nytt Pris: ')
             newStart = input('Ny Start (yyyy-mm-dd): ')
+            if not checkvalidDate(newStart):
+                print('Felaktig inmatning av Startdatum')
+                return
             newEnd  = input('Nytt Slut (yyyy-mm-dd)')
+            if not checkvalidDate(newEnd):
+                print('Felaktig inmatning av Slutdatum')
+                return
             parts = campaignList[choiceCampaign].split(':')
             del campaignList[choiceCampaign]
             changedCampaign = f'{parts[0]}:{newPrice}:{newStart}:{newEnd}'
