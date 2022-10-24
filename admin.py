@@ -92,25 +92,25 @@ class AdminPage:
         with open('Campaign.txt', 'r') as file:
             for line in file:
                 campaignList.append(line.replace('\n',''))
+
         choiceID = input('Vilket ID vill du lägga till/ändra kampanj på?')
-        try:
-            for products in self.__productlist:
-                if products.getID() == choiceID:
-                    newCampaign = float(input('Vilket Pris vill du att varan ska ha under kampanjen? : '))
-                    campaignStart = input('Vilket datum ska det börja (yyyy-mm-dd)')
-                    if not checkvalidDate(campaignStart):
-                        print('Felaktig inmatning av Startdatum')
-                        return
-                    campaignEnd = input('Vilket datum ska det sluta (yyyy-mm-dd)')
-                    if not checkvalidDate(campaignEnd):
-                        print('Felaktig inmatning av Slutdatum')
-                        return
-                    print('Vill du spara kampanjen? (Ja/Nej)')
-                    choiceSave = input(' : ')
-                    if choiceSave.lower() == 'ja':
-                            campaignList.append(f'{choiceID}:{newCampaign}:{campaignStart}:{campaignEnd}\n')
-        except:
-            print('Något gick fel...')
+        for products in self.__productlist:
+            if products.getID() == choiceID:
+                print('Vilket pris ska kampanjen ha?')
+                newCampaign = newfloatPrice()
+                campaignStart = input('Vilket datum ska det börja (yyyy-mm-dd)')
+                if not checkvalidDate(campaignStart):
+                    print('Felaktig inmatning av Startdatum')
+                    return
+                campaignEnd = input('Vilket datum ska det sluta (yyyy-mm-dd)')
+                if not checkvalidDate(campaignEnd):
+                    print('Felaktig inmatning av Slutdatum')
+                    return
+                print('Vill du spara kampanjen? (Ja/Nej)')
+                choiceSave = input(' : ')
+                if choiceSave.lower() == 'ja':
+                        campaignList.append(f'{choiceID}:{newCampaign}:{campaignStart}:{campaignEnd}\n')
+
         with open('Campaign.txt','w') as file:
             for campaigns in campaignList:
                 file.write(f'{campaigns}\n')
@@ -122,19 +122,18 @@ class AdminPage:
         with open('Campaign.txt', 'r') as file:
             for line in file:
                 campaignList.append(line.replace('\n',''))
+
         for campaign_index, campaigns in enumerate(campaignList):
-            print(f'{campaign_index}. {campaigns}')
-        print('Vilken kampanj vill du ändra på?(0,1,2 etc)')
-        while True:
-            try:
-                choiceCampaign = int(input(' : '))
-                break
-            except:
-                print('Vänligen välj en siffra')
+            print(f'{campaign_index+1}. {campaigns}')
+        print(f'Vilken kampanj vill du ändra på?(1-{len(campaignList)})')
+        choiceCampaign = menuChoice(len(campaignList))
+
         print('Vill du ändra eller ta bort kampanj? (Ändra/Ta bort)')
         choiceChange = input(' : ')
+
         if choiceChange.lower() == 'ta bort':
             del campaignList[choiceCampaign]
+
         if choiceChange.lower() == 'ändra':
             newPrice = input('Nytt Pris: ')
             newStart = input('Ny Start (yyyy-mm-dd): ')
@@ -149,6 +148,7 @@ class AdminPage:
             del campaignList[choiceCampaign]
             changedCampaign = f'{parts[0]}:{newPrice}:{newStart}:{newEnd}'
             campaignList.append(changedCampaign)
+
         with open('Campaign.txt','w') as file:
             for campaigns in campaignList:
                 file.write(f'{campaigns}\n')

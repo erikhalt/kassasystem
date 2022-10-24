@@ -36,3 +36,12 @@ def menuChoice(amountChoices:int)->int:
         except:
             print(f'Vänligen ange en siffre mellan 1-{amountChoices}')
 
+def newfloatPrice():
+    while True:
+        try:
+            price = input(' : ')
+            price = float(price)
+            return price
+        except:
+            print('Vänligen ange önskat decimaltal (xx.xx)')
+
