@@ -38,7 +38,7 @@ class receipt:
                         if products.getID() == partsCampaign[0]:
                             if productCampaignStart <= dateOfPurchase <= productCampaignEnd:
                                 if productid == products.getID():
-                                    newrow = [productid,products.getName(),partsCampaign[1],productamount]
+                                    newrow = [productid,products.getName(),float(partsCampaign[1]),productamount]
                                     self.__receiptrows.append(newrow)
                             else:
                                 if productid == products.getID():

@@ -28,7 +28,16 @@ class AdminPage:
             elif selection == 2:
                 self.searchReceipt()
             elif selection == 3:
-                self.campaignPrice()
+                print('1. Ändra kampanj')
+                print('2. Lägg till ny kampanj')
+                try:
+                    choice = int(input(' : '))
+                    if choice == 2:
+                        self.NewcampaignPrice()
+                    if choice == 1:
+                        self.changeCampaign()
+                except:
+                    print('Vänligen välj mellan 1 eller 2.')
             elif selection == 4:
                 return
     def changeProduct(self):
@@ -82,7 +91,7 @@ class AdminPage:
                     if printing:
                         print(lines)
 
-    def campaignPrice(self):
+    def NewcampaignPrice(self):
         while True:
             choiceID = input('Vilket ID vill du lägga till/ändra kampanj på?')
             try:
@@ -91,11 +100,6 @@ class AdminPage:
                         newCampaign = float(input('Vilket Pris vill du att varan ska ha under kampanjen? : '))
                         campaignStart = input('Vilket datum ska det börja (yyyy-mm-dd)')
                         campaignEnd = input('Vilket datum ska det sluta (yyyy-mm-dd)')
-                        # products.setCampaign(newCampaign) 
-                        # products.setCampaignStart(campaignStart)
-                        # products.setCampaignEnd(campaignEnd)
-                        # print('Såhär ser din kampanj ut.')
-                        # print(f'{products.getName()} {products.getCampaign()} {products.getCampaignStart()} {products.getCampaignEnd()}')
                         print('Vill du spara kampanjen? (Ja/Nej)')
                         choiceSave = input(' : ')
                         if choiceSave.lower() == 'ja':
@@ -108,7 +112,33 @@ class AdminPage:
             choice = input(' : ')
             if choice.upper() == 'BACKA':
                 break
-                        
-                    
 
-                        
+    def changeCampaign(self):
+        campaignList = []
+        with open('Campaign.txt', 'r') as file:
+            for line in file:
+                campaignList.append(line)
+        for campaign_index, campaigns in enumerate(campaignList):
+            print(f'{campaign_index}. {campaigns}')
+        print('Vilken kampanj vill du ändra på?(0,1,2 etc)')
+        while True:
+            try:
+                choiceCampaign = int(input(' : '))
+                break
+            except:
+                print('Vänligen välj en siffra')
+        print('Vill du ändra eller ta bort kampanj? (Ändra/Ta bort)')
+        choiceChange = input(' : ')
+        if choiceChange.lower() == 'ta bort':
+            del campaignList[choiceCampaign]
+        if choiceChange.lower() == 'ändra':
+            newPrice = input('Nytt Pris: ')
+            newStart = input('Ny Start (yyyy-mm-dd): ')
+            newEnd  = input('Nytt Slut (yyyy-mm-dd)')
+            parts = campaignList[choiceCampaign].split(':')
+            del campaignList[choiceCampaign]
+            changedCampaign = f'{parts[0]}:{newPrice}:{newStart}:{newEnd}'
+            campaignList.append(changedCampaign)
+        with open('Campaign.txt','w') as file:
+            for changes in campaignList:
+                file.write(f'{changes}\n')

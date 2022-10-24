@@ -5,3 +5,6 @@ Total:209.95
 Kvitto:7	2022-10-24 09:15:59
 LunchMenu 1 antal 1.0 á 87.9		= 87.9
 Total:175.8
+Kvitto:8	2022-10-24 10:35:42
+LunchMenu 1 antal 1.0 á 65.0		= 65.0
+Total:130.0
