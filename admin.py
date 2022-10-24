@@ -1,6 +1,4 @@
-from genericpath import isfile
 import os
-from random import choices
 from produkt import *
 
 class AdminPage:
@@ -18,7 +16,7 @@ class AdminPage:
             try: 
                 selection = int(input(' : '))
             except:
-                print('Något gick fel.....')
+                print('Vänligen ange en siffra mellan 1-4')
             
             if selection == 1:
                 self.changeProduct()
@@ -40,6 +38,8 @@ class AdminPage:
                     print('Vänligen välj mellan 1 eller 2.')
             elif selection == 4:
                 return
+
+
     def changeProduct(self):
         print('Vilket ID vill du ändra på?')
         choice = input(' : ')
@@ -57,6 +57,7 @@ class AdminPage:
                     product.setName(theValue)
                 if theType == 'pris':
                     product.setPrice(theValue)
+
 
     def searchReceipt(self):
         print('Vilken dag söker du?')
@@ -91,6 +92,7 @@ class AdminPage:
                     if printing:
                         print(lines)
 
+
     def NewcampaignPrice(self):
         while True:
             choiceID = input('Vilket ID vill du lägga till/ändra kampanj på?')
@@ -112,6 +114,7 @@ class AdminPage:
             choice = input(' : ')
             if choice.upper() == 'BACKA':
                 break
+
 
     def changeCampaign(self):
         campaignList = []

@@ -21,9 +21,6 @@ class newPurchase:
                 productid, amount = command_selection.split(' ')
                 productid = str(productid)
                 amount = float(amount)
-                for object in self.__productlist:
-                    if object.getID() == productid:
-                        priceType = object.getType()
                 self.receipt.addrows(productid,amount)
                 self.receipt.printexcisting()
 

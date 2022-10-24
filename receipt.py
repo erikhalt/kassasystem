@@ -1,7 +1,6 @@
 from datetime import datetime
 import os
 
-
 class receipt:
     def __init__(self,productlist):
         self.__productlist = productlist
@@ -73,7 +72,7 @@ class receipt:
     def savetofile(self):
         if os.path.isfile(f'Receipts\\RECEIPT_{self.__dateofpurchase}.txt'):
             with open(f'Receipts\\RECEIPT_{self.__dateofpurchase}.txt', 'a') as file:
-                # file.write(f'\n{self.__nextreceiptnumber};{self.__receiptdate};{self.__totalsum};{self.__receiptrows}')
+                
                 file.write(f'Kvitto:{self.__nextreceiptnumber}\t{self.__receiptdate}\n')        
                 for rows in self.__receiptrows:
                     self.__totalsum += (rows[2]*rows[3])
@@ -82,7 +81,7 @@ class receipt:
                 file.write(f'Total:{self.__totalsum}\n')
         else:
             with open(f'Receipts\\RECEIPT_{self.__dateofpurchase}.txt', 'w+') as file:
-                # file.write(f'{self.__nextreceiptnumber};{self.__receiptdate};{self.__totalsum};{self.__receiptrows}')
+                
                 file.write(f'Kvitto:{self.__nextreceiptnumber}\t{self.__receiptdate}\n')        
                 for rows in self.__receiptrows:
                     self.__totalsum += (rows[2]*rows[3])
