@@ -12,7 +12,7 @@ class AdminPage:
             print('*AdminVerktyg*')
             print('1. Ändra namn/pris på produkt')
             print('2. Sök kvitton')
-            print('3. Lägg till Kampanjpris')
+            print('3. Kampanjer')
             print('4. Backa')
             
             try: 
