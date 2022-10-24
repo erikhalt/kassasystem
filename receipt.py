@@ -16,11 +16,16 @@ class receipt:
         
         self.__nextreceiptnumber = int(rNumber)
 
-        self.__campaigns = []
-        with open('Campaign.txt','r') as file:
-            self.__campaigns.append(file.readline())
+        
+
+        self.__campaignDateToday = int(self.__dateofpurchase.replace('-',''))
 
     def addrows(self,productid,productamount):
+        campaign = False
+        self.__campaigns = []
+        with open('Campaign.txt','r') as file:
+            for lines in file:
+                self.__campaigns.append(lines.replace('\n', ''))
 
         if productid in self.__receiptrowids:
             for rows in self.__receiptrows:
@@ -28,27 +33,27 @@ class receipt:
                     rows[3] += productamount
         else:                    
             for products in self.__productlist:
-                if len(self.__campaigns) > 0:
+                if productid == products.getID():
+                    
                     for campaigns in self.__campaigns:
                         partsCampaign = campaigns.split(':')
                         productCampaignStart = int(partsCampaign[2].replace('-',''))
                         productCampaignEnd = int(partsCampaign[3].replace('-',''))
-                        dateOfPurchase = int(self.__dateofpurchase.replace('-',''))
-                        if products.getID() == partsCampaign[0]:
-                            if productCampaignStart <= dateOfPurchase <= productCampaignEnd:
-                                if productid == products.getID():
-                                    newrow = [productid,products.getName(),float(partsCampaign[1]),productamount]
-                                    self.__receiptrows.append(newrow)
-                            else:
-                                if productid == products.getID():
-                                    newrow = [productid,products.getName(),products.getPrice(),productamount]
-                                    self.__receiptrows.append(newrow)
-
-                else:
-                        if productid == products.getID():
-                            newrow = [productid,products.getName(),products.getPrice(),productamount]
-                            self.__receiptrows.append(newrow)
-        self.__receiptrowids.append(productid)
+                        productCampaignPrice = float(partsCampaign[1])
+                        productCampaignID = partsCampaign[0]
+                        if productCampaignID == productid:
+                            if productCampaignStart < self.__campaignDateToday < productCampaignEnd:
+                                campaign = True
+                                newrow = [productid,products.getName(),productCampaignPrice,productamount]
+                                self.__receiptrows.append(newrow)
+                                self.__receiptrowids.append(productid)
+            if not campaign:
+                for products in self.__productlist:
+                    if productid == products.getID():
+                        newrow = [productid,products.getName(),products.getPrice(),productamount]
+                        self.__receiptrows.append(newrow)
+                        self.__receiptrowids.append(productid)
+                
     
     def printexcisting(self):
         print(f'Kvitto:{self.__nextreceiptnumber}\t{self.__receiptdate}')        
