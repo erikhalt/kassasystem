@@ -1,5 +1,6 @@
 from genericpath import isfile
 import os
+from random import choices
 from produkt import *
 
 class AdminPage:
@@ -87,16 +88,19 @@ class AdminPage:
             try:
                 for products in self.__productlist:
                     if products.getID() == choiceID:
-                        print(f'{products.getName()} {products.getCampaign()} {products.getCampaignStart()} {products.getCampaignEnd()}')
                         newCampaign = float(input('Vilket Pris vill du att varan ska ha under kampanjen? : '))
                         campaignStart = input('Vilket datum ska det börja (yyyy-mm-dd)')
                         campaignEnd = input('Vilket datum ska det sluta (yyyy-mm-dd)')
-                        products.setCampaign(newCampaign) 
-                        products.setCampaignStart(campaignStart)
-                        products.setCampaignEnd(campaignEnd)
-                        print('Såhär ser din kampanj ut.')
-                        print(f'{products.getName()} {products.getCampaign()} {products.getCampaignStart()} {products.getCampaignEnd()}')
-                
+                        # products.setCampaign(newCampaign) 
+                        # products.setCampaignStart(campaignStart)
+                        # products.setCampaignEnd(campaignEnd)
+                        # print('Såhär ser din kampanj ut.')
+                        # print(f'{products.getName()} {products.getCampaign()} {products.getCampaignStart()} {products.getCampaignEnd()}')
+                        print('Vill du spara kampanjen? (Ja/Nej)')
+                        choiceSave = input(' : ')
+                        if choiceSave.lower() == 'ja':
+                            with open('Campaign.txt', 'a') as file:
+                                file.write(f'{choiceID}:{newCampaign}:{campaignStart}:{campaignEnd}\n')
             except:
                 print('Något gick fel...')
 

@@ -11,11 +11,15 @@ class receipt:
         self.__totalsum = 0
         self.__receiptdate = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         self.__dateofpurchase = datetime.now().strftime("%Y-%m-%d")
-        # self.__pathtofile = str)
+
         with open('nextreceiptnumber.txt') as file:
             rNumber = file.read()
         
         self.__nextreceiptnumber = int(rNumber)
+
+        self.__campaigns = []
+        with open('Campaign.txt','r') as file:
+            self.__campaigns.append(file.readline())
 
     def addrows(self,productid,productamount):
 
@@ -25,22 +29,21 @@ class receipt:
                     rows[3] += productamount
         else:                    
             for products in self.__productlist:
-                if products.getCampaignStart() != '':
-                    productCampaignStart = products.getCampaignStart()
-                    productCampaignStart = int(productCampaignStart.replace('-',''))
-                    productCampaignEnd = products.getCampaignEnd()
-                    productCampaignEnd = int(productCampaignEnd.replace('-',''))
-                    dateOfPurchase = int(self.__dateofpurchase.replace('-',''))
-
+                if len(self.__campaigns) > 0:
+                    for campaigns in self.__campaigns:
+                        partsCampaign = campaigns.split(':')
+                        productCampaignStart = int(partsCampaign[2].replace('-',''))
+                        productCampaignEnd = int(partsCampaign[3].replace('-',''))
+                        dateOfPurchase = self.__dateofpurchase.replace('-','')
                     if productCampaignStart <= dateOfPurchase <= productCampaignEnd:
                         if productid == products.getID():
-                            newrow = [productid,products.getName(),products.getCampaign(),productamount]
+                            newrow = [productid,products.getName(),partsCampaign[1],productamount]
                             self.__receiptrows.append(newrow)
                     else:
                         if productid == products.getID():
                             newrow = [productid,products.getName(),products.getPrice(),productamount]
                             self.__receiptrows.append(newrow)
-                            
+
                 else:
                         if productid == products.getID():
                             newrow = [productid,products.getName(),products.getPrice(),productamount]
