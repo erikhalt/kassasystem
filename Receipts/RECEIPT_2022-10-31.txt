@@ -1,0 +1,10 @@
+Kvitto:13	2022-10-31 09:32:09
+Bannana antal 0.2 á 14.95		= 2.99
+Apple antal 0.7 á 31.9		= 22.33
+LunchMenu 1 antal 1.0 á 75.0		= 75.0
+Total:228.95
+Kvitto:14	2022-10-31 09:47:39
+LunchMenu 1 antal 5.0 á 75.0		= 375.0
+Bannana antal 2.0 á 14.95		= 29.9
+Apple antal 2.0 á 31.9		= 63.8
+Total:2111.0000000000005
