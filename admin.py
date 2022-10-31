@@ -133,7 +133,7 @@ class AdminPage:
         choiceChange = input(' : ')
 
         if choiceChange.lower() == 'ta bort':
-            del campaignList[choiceCampaign]
+            del campaignList[choiceCampaign-1]
 
         if choiceChange.lower() == 'ändra':
             newPrice = input('Nytt Pris: ')
@@ -145,8 +145,8 @@ class AdminPage:
             if not checkvalidDate(newEnd):
                 print('Felaktig inmatning av Slutdatum')
                 return
-            parts = campaignList[choiceCampaign].split(':')
-            del campaignList[choiceCampaign]
+            parts = campaignList[choiceCampaign-1].split(':')
+            del campaignList[choiceCampaign-1]
             changedCampaign = f'{parts[0]}:{newPrice}:{newStart}:{newEnd}'
             campaignList.append(changedCampaign)
 

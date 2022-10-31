@@ -34,7 +34,7 @@ def menuChoice(amountChoices:int)->int:
             if 0<choice<=amountChoices:
                 return choice
         except:
-            print(f'Vänligen ange en siffre mellan 1-{amountChoices}')
+            print(f'Vänligen ange en siffra mellan 1-{amountChoices}')
 
 def newfloatPrice():
     while True:
