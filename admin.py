@@ -125,7 +125,8 @@ class AdminPage:
                 campaignList.append(line.replace('\n',''))
 
         for campaign_index, campaigns in enumerate(campaignList):
-            print(f'{campaign_index+1}. {campaigns}')
+            if campaigns != '':
+                print(f'{campaign_index+1}. {campaigns}')
         print(f'Vilken kampanj vill du ändra på?(1-{len(campaignList)})')
         choiceCampaign = menuChoice(len(campaignList))
 
