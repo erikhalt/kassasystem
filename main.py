@@ -23,9 +23,12 @@ class system:
             selection = menuChoice(3)
 
             if selection == 1:
-                newPurchase(self.__productlist)
+                Purchase = newPurchase(self.__productlist)
+                Purchase.run()
             elif selection == 2:
-                AdminPage(self.__productlist)
+                Adminmenu = AdminPage(self.__productlist)
+                Adminmenu.run()
+
             elif selection == 3:
                 self.exit()
     

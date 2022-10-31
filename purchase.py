@@ -4,7 +4,7 @@ class newPurchase:
     def __init__(self,productlist):
         self.__productlist = productlist
         self.receipt = receipt(self.__productlist)
-        self.run()
+        
 
     def run(self):
         while True:

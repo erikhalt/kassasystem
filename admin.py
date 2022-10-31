@@ -1,10 +1,11 @@
 import os
 from produkt import *
 from globalFunctions import *
+
 class AdminPage:
     def __init__(self,productlist):
         self.__productlist = productlist
-        self.run()
+        
     def run(self):
         while True:
             print('*AdminVerktyg*')
