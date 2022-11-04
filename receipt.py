@@ -59,8 +59,8 @@ class receipt:
         print(f'Kvitto:{self.__nextreceiptnumber}\t{self.__receiptdate}')        
         for rows in self.__receiptrows:
             totalsum += (rows[2]*rows[3])
-            print(f'{rows[1]} antal {rows[3]} á {rows[2]}\t\t= {round((rows[2]*rows[3]),2)}')
-
+            print(f'{rows[1]:20} antal {rows[3]:5} á {rows[2]:5} = {round((rows[2]*rows[3]),2):10}')
+           
         print(f'Total:{round((totalsum),2)}')
 
     def printfull(self):
@@ -68,7 +68,7 @@ class receipt:
         print(f'Kvitto: {self.__nextreceiptnumber}\t{self.__receiptdate}')        
         for rows in self.__receiptrows:
             totalsum += (rows[2]*rows[3])
-            print(f'{rows[1]} antal {rows[3]} á {rows[2]}\t\t= {round((rows[2]*rows[3]),2)}')
+            print(f'{rows[1]:20} antal {rows[3]:5} á {rows[2]:5} = {round((rows[2]*rows[3]),2):10}')
 
         print(f'Total:{round((totalsum),2)}')
 

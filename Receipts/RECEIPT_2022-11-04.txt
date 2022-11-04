@@ -23,3 +23,19 @@ Billys Pan Pizza antal 1.0 á 9.95		= 9.95
 Kiwi antal 0.3 á 34.94		= 10.48
 Watermelon antal 1.0 á 36.95		= 36.95
 Total:99.33
+Kvitto:21	2022-11-04 10:48:35
+Bannana antal 1.0 á 31.95		= 31.95
+Pear antal 1.0 á 22.95		= 22.95
+Watermelon antal 1.0 á 36.95		= 36.95
+Apple antal 1.0 á 31.9		= 31.9
+Total:123.75
+Kvitto:22	2022-11-04 10:50:12
+Bannana antal 1.0 á 31.95		= 31.95
+Pear antal 2.0 á 22.95		= 45.9
+Total:77.85
+Kvitto:23	2022-11-04 10:55:55
+Bannana antal 1.0 á 31.95		= 31.95
+Watermelon antal 1.0 á 36.95		= 36.95
+Apple antal 1.0 á 31.9		= 31.9
+Billys Pan Pizza antal 1.0 á 9.95		= 9.95
+Total:110.75
