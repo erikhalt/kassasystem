@@ -17,3 +17,9 @@ Bannana antal 0.33 á 14.95		= 4.93
 LunchMenu 1 antal 1.0 á 87.9		= 87.9
 Apple antal 0.587 á 31.9		= 18.73
 Total:111.56
+Kvitto:20	2022-11-04 10:25:16
+Karins Lasagne antal 1.0 á 41.95		= 41.95
+Billys Pan Pizza antal 1.0 á 9.95		= 9.95
+Kiwi antal 0.3 á 34.94		= 10.48
+Watermelon antal 1.0 á 36.95		= 36.95
+Total:99.33

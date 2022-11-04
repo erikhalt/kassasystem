@@ -94,3 +94,5 @@ class receipt:
                     file.write(f'{rows[1]} antal {rows[3]} á {rows[2]}\t\t= {round((rows[2]*rows[3]),2)}\n')
 
                 file.write(f'Total:{round((totalsum),2)}\n')
+
+
