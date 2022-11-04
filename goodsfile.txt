@@ -1,3 +1,9 @@
-300:Bannana:14.95:kr/kg
+300:Bannana:31.95:kr/kg
+301:Pear:22.95:kr/kg
+302:Watermelon:36.95:kr/kg
+303:Kiwi:34.94:kr/kg
+304:Orange:29.95:kr/kg
 305:Apple:31.9:kr/kg
-302:LunchMenu 1:87.90:kr/st
+400:LunchMenu 1:87.90:kr/st
+401:Billys Pan Pizza:9.95:kr/st
+402:Karins Lasagne:41.95:kr/st
