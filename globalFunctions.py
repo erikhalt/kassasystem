@@ -45,3 +45,15 @@ def newfloatPrice():
         except:
             print('Vänligen ange önskat decimaltal (xx.xx)')
 
+def checkValidDateSpan(startdate,enddate):
+    startdate = startdate.replace('-','')
+    enddate = enddate.replace('-','')
+    startdate = int(startdate)
+    enddate = int(enddate)
+    if startdate > enddate:
+        return False
+    elif startdate == enddate:
+        return False
+    else:
+        return True
+

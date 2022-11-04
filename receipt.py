@@ -7,7 +7,6 @@ class receipt:
         self.__receiptrows = []
         self.__receiptrowids = []
         self.__nextreceiptnumber = 0
-        self.__totalsum = 0
         self.__receiptdate = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         self.__dateofpurchase = datetime.now().strftime("%Y-%m-%d")
 
@@ -42,7 +41,7 @@ class receipt:
                         productCampaignPrice = float(partsCampaign[1])
                         productCampaignID = partsCampaign[0]
                         if productCampaignID == productid:
-                            if productCampaignStart < self.__campaignDateToday < productCampaignEnd:
+                            if productCampaignStart <= self.__campaignDateToday <= productCampaignEnd:
                                 campaign = True
                                 newrow = [productid,products.getName(),productCampaignPrice,productamount]
                                 self.__receiptrows.append(newrow)
@@ -56,20 +55,22 @@ class receipt:
                 
     
     def printexcisting(self):
+        totalsum = 0
         print(f'Kvitto:{self.__nextreceiptnumber}\t{self.__receiptdate}')        
         for rows in self.__receiptrows:
-            self.__totalsum += (rows[2]*rows[3])
-            print(f'{rows[1]} antal {rows[3]} á {rows[2]}\t\t= {rows[2]*rows[3]}')
+            totalsum += (rows[2]*rows[3])
+            print(f'{rows[1]} antal {rows[3]} á {rows[2]}\t\t= {round((rows[2]*rows[3]),2)}')
 
-        print(f'Total:{self.__totalsum}')
+        print(f'Total:{round((totalsum),2)}')
 
     def printfull(self):
+        totalsum = 0
         print(f'Kvitto: {self.__nextreceiptnumber}\t{self.__receiptdate}')        
         for rows in self.__receiptrows:
-            self.__totalsum += (rows[2]*rows[3])
-            print(f'{rows[1]} antal {rows[3]} á {rows[2]}\t\t= {rows[2]*rows[3]}')
+            totalsum += (rows[2]*rows[3])
+            print(f'{rows[1]} antal {rows[3]} á {rows[2]}\t\t= {round((rows[2]*rows[3]),2)}')
 
-        print(f'Total:{self.__totalsum}')
+        print(f'Total:{round((totalsum),2)}')
 
         with open('nextreceiptnumber.txt', 'w') as file:
             file.write(str(self.__nextreceiptnumber+1))
@@ -77,19 +78,19 @@ class receipt:
     def savetofile(self):
         if os.path.isfile(f'Receipts\\RECEIPT_{self.__dateofpurchase}.txt'):
             with open(f'Receipts\\RECEIPT_{self.__dateofpurchase}.txt', 'a') as file:
-                
+                totalsum = 0
                 file.write(f'Kvitto:{self.__nextreceiptnumber}\t{self.__receiptdate}\n')        
                 for rows in self.__receiptrows:
-                    self.__totalsum += (rows[2]*rows[3])
-                    file.write(f'{rows[1]} antal {rows[3]} á {rows[2]}\t\t= {rows[2]*rows[3]}\n')
+                    totalsum += (rows[2]*rows[3])
+                    file.write(f'{rows[1]} antal {rows[3]} á {rows[2]}\t\t= {round((rows[2]*rows[3]),2)}\n')
 
-                file.write(f'Total:{self.__totalsum}\n')
+                file.write(f'Total:{round((totalsum),2)}\n')
         else:
             with open(f'Receipts\\RECEIPT_{self.__dateofpurchase}.txt', 'w+') as file:
-                
+                totalsum = 0
                 file.write(f'Kvitto:{self.__nextreceiptnumber}\t{self.__receiptdate}\n')        
                 for rows in self.__receiptrows:
-                    self.__totalsum += (rows[2]*rows[3])
-                    file.write(f'{rows[1]} antal {rows[3]} á {rows[2]}\t\t= {rows[2]*rows[3]}\n')
+                    totalsum += (rows[2]*rows[3])
+                    file.write(f'{rows[1]} antal {rows[3]} á {rows[2]}\t\t= {round((rows[2]*rows[3]),2)}\n')
 
-                file.write(f'Total:{self.__totalsum}\n')
+                file.write(f'Total:{round((totalsum),2)}\n')

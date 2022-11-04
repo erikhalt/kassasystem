@@ -57,6 +57,7 @@ class AdminPage:
         print('Input = yyyy-mm-dd')
         receiptChoice = input(' : ')
         if not checkvalidDate(receiptChoice):
+            print('Felaktigt inmatning i datum ange yyyy-mm-dd')
             return
         receiptPath = f'Receipts\\RECEIPT_{receiptChoice}.txt'
         if os.path.isfile(receiptPath):
@@ -64,7 +65,9 @@ class AdminPage:
                 for lines in file:
                     parts = lines.split(':')
                     if parts[0] == 'Kvitto':
-                        print(f'Kvitto:{parts[1][0]}')
+                        receiptNumber = parts[1].split('\t')
+                        receiptNumber = receiptNumber[0]
+                        print(f'Kvitto:{receiptNumber}')
                     if parts[0] == 'Total':
                         print(f'Total:{parts[1]}')
         
@@ -79,7 +82,9 @@ class AdminPage:
                 for lines in file:
                     parts = lines.split(':')
                     if parts[0] == 'Kvitto':
-                        if parts[1][0] == choice:
+                        receiptNumber = parts[1].split('\t')
+                        receiptNumber = receiptNumber[0]
+                        if receiptNumber == choice:
                             printing = True
                     if parts[0] == 'Total' and printing == True:
                         print(lines)
@@ -99,14 +104,19 @@ class AdminPage:
             if products.getID() == choiceID:
                 print('Vilket pris ska kampanjen ha?')
                 newCampaign = newfloatPrice()
-                campaignStart = input('Vilket datum ska det börja (yyyy-mm-dd)')
-                if not checkvalidDate(campaignStart):
-                    print('Felaktig inmatning av Startdatum')
-                    return
-                campaignEnd = input('Vilket datum ska det sluta (yyyy-mm-dd)')
-                if not checkvalidDate(campaignEnd):
-                    print('Felaktig inmatning av Slutdatum')
-                    return
+                while True:
+                    campaignStart = input('Vilket datum ska det börja (yyyy-mm-dd)')
+                    if not checkvalidDate(campaignStart):
+                        print('Felaktig inmatning av Startdatum')
+                    else:
+                        break
+                while True:
+                    campaignEnd = input('Vilket datum ska det sluta (yyyy-mm-dd)')
+                    if not checkvalidDate(campaignEnd):
+                        print('Felaktig inmatning av Slutdatum')
+
+                    if checkValidDateSpan(campaignStart,campaignEnd):
+                        break
                 print('Vill du spara kampanjen? (Ja/Nej)')
                 choiceSave = input(' : ')
                 if choiceSave.lower() == 'ja':
@@ -130,13 +140,15 @@ class AdminPage:
         print(f'Vilken kampanj vill du ändra på?(1-{len(campaignList)})')
         choiceCampaign = menuChoice(len(campaignList))
 
-        print('Vill du ändra eller ta bort kampanj? (Ändra/Ta bort)')
-        choiceChange = input(' : ')
+        print('Vill du ändra eller ta bort kampanj?')
+        print('1. Ändra')
+        print('2. Ta bort')
+        choiceChange = menuChoice(2)
 
-        if choiceChange.lower() == 'ta bort':
+        if choiceChange == 2:
             del campaignList[choiceCampaign-1]
 
-        if choiceChange.lower() == 'ändra':
+        if choiceChange == 1:
             newPrice = input('Nytt Pris: ')
             newStart = input('Ny Start (yyyy-mm-dd): ')
             if not checkvalidDate(newStart):
