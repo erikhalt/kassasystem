@@ -34,6 +34,6 @@ class newPurchase:
                                 print('produkt av denna typ kan bara vara heltal i amount.')
                         elif products.getID() == productid:
                             self.receipt.addrows(productid,amount)
-                            self.receipt.printexcisting()
+                            self.receipt.printexcisting()    
                 except:
                     print('felinmatning...')
